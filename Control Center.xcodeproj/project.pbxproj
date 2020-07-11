@@ -10,6 +10,14 @@
 		014FC54024B6158200344772 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014FC53F24B6158200344772 /* AppDelegate.swift */; };
 		014FC54224B6158600344772 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 014FC54124B6158600344772 /* Assets.xcassets */; };
 		014FC54524B6158600344772 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 014FC54324B6158600344772 /* MainMenu.xib */; };
+		014FC54E24B69AB000344772 /* StatusMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014FC54D24B69AB000344772 /* StatusMenuController.swift */; };
+		014FC55824B6F70D00344772 /* ControlCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014FC55724B6F70D00344772 /* ControlCenterView.swift */; };
+		014FC55A24B701EA00344772 /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014FC55924B701EA00344772 /* WeatherAPI.swift */; };
+		014FC56F24B7FA1200344772 /* blueutil in Resources */ = {isa = PBXBuildFile; fileRef = 014FC56E24B7FA1200344772 /* blueutil */; };
+		01FE0F3B24B965F200FD673A /* maclight in Resources */ = {isa = PBXBuildFile; fileRef = 01FE0F3A24B965F200FD673A /* maclight */; };
+		01FE0F5124B9BE1800FD673A /* PreferencesWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FE0F4F24B9BE1800FD673A /* PreferencesWindow.swift */; };
+		01FE0F5224B9BE1800FD673A /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01FE0F5024B9BE1800FD673A /* PreferencesWindow.xib */; };
+		01FE0F5724B9C94200FD673A /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FE0F5624B9C94200FD673A /* APIKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +27,14 @@
 		014FC54424B6158600344772 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		014FC54624B6158600344772 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		014FC54724B6158600344772 /* Control_Center.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Control_Center.entitlements; sourceTree = "<group>"; };
+		014FC54D24B69AB000344772 /* StatusMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMenuController.swift; sourceTree = "<group>"; };
+		014FC55724B6F70D00344772 /* ControlCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlCenterView.swift; sourceTree = "<group>"; };
+		014FC55924B701EA00344772 /* WeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
+		014FC56E24B7FA1200344772 /* blueutil */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = blueutil; sourceTree = "<group>"; };
+		01FE0F3A24B965F200FD673A /* maclight */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = maclight; sourceTree = "<group>"; };
+		01FE0F4F24B9BE1800FD673A /* PreferencesWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindow.swift; sourceTree = "<group>"; };
+		01FE0F5024B9BE1800FD673A /* PreferencesWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
+		01FE0F5624B9C94200FD673A /* APIKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,8 +51,11 @@
 		014FC53324B6158200344772 = {
 			isa = PBXGroup;
 			children = (
+				01FE0F5624B9C94200FD673A /* APIKey.swift */,
 				014FC53E24B6158200344772 /* Control Center */,
 				014FC53D24B6158200344772 /* Products */,
+				014FC55B24B70A8300344772 /* Frameworks */,
+				01FE0F5524B9C5B000FD673A /* Dependencies */,
 			);
 			sourceTree = "<group>";
 		};
@@ -52,12 +71,33 @@
 			isa = PBXGroup;
 			children = (
 				014FC53F24B6158200344772 /* AppDelegate.swift */,
+				014FC54D24B69AB000344772 /* StatusMenuController.swift */,
+				01FE0F4F24B9BE1800FD673A /* PreferencesWindow.swift */,
+				014FC55724B6F70D00344772 /* ControlCenterView.swift */,
+				014FC55924B701EA00344772 /* WeatherAPI.swift */,
 				014FC54124B6158600344772 /* Assets.xcassets */,
 				014FC54324B6158600344772 /* MainMenu.xib */,
+				01FE0F5024B9BE1800FD673A /* PreferencesWindow.xib */,
 				014FC54624B6158600344772 /* Info.plist */,
 				014FC54724B6158600344772 /* Control_Center.entitlements */,
 			);
 			path = "Control Center";
+			sourceTree = "<group>";
+		};
+		014FC55B24B70A8300344772 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		01FE0F5524B9C5B000FD673A /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				014FC56E24B7FA1200344772 /* blueutil */,
+				01FE0F3A24B965F200FD673A /* maclight */,
+			);
+			path = Dependencies;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,8 +158,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01FE0F3B24B965F200FD673A /* maclight in Resources */,
+				01FE0F5224B9BE1800FD673A /* PreferencesWindow.xib in Resources */,
 				014FC54224B6158600344772 /* Assets.xcassets in Resources */,
 				014FC54524B6158600344772 /* MainMenu.xib in Resources */,
+				014FC56F24B7FA1200344772 /* blueutil in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,7 +173,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				014FC54E24B69AB000344772 /* StatusMenuController.swift in Sources */,
+				01FE0F5724B9C94200FD673A /* APIKey.swift in Sources */,
+				01FE0F5124B9BE1800FD673A /* PreferencesWindow.swift in Sources */,
+				014FC55A24B701EA00344772 /* WeatherAPI.swift in Sources */,
 				014FC54024B6158200344772 /* AppDelegate.swift in Sources */,
+				014FC55824B6F70D00344772 /* ControlCenterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,40 +312,58 @@
 		014FC54B24B6158600344772 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "Control Center";
 				CODE_SIGN_ENTITLEMENTS = "Control Center/Control_Center.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = NAR5D6HWAD;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = "Control Center/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.fordApps.Control-Center";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fordApps.controlcenter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
+				);
 			};
 			name = Debug;
 		};
 		014FC54C24B6158600344772 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "Control Center";
 				CODE_SIGN_ENTITLEMENTS = "Control Center/Control_Center.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = NAR5D6HWAD;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = "Control Center/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.fordApps.Control-Center";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fordApps.controlcenter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
+				);
 			};
 			name = Release;
 		};
