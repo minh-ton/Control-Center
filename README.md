@@ -21,7 +21,7 @@ sudo spctl --master-disable
 ```
 If you still cannot open the app, try with a different command: 
 ```bash
-sudo xattr -d com.apple.quarantine /the/blocked/program.app
+sudo xattr -d com.apple.quarantine /Applications/Control\ Center.app #Assuming the app is in the Applications folder
 ```
 After running one of those commands, you should be able to open the application.
 
