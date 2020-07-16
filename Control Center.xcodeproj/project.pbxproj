@@ -9,32 +9,36 @@
 /* Begin PBXBuildFile section */
 		014FC54024B6158200344772 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014FC53F24B6158200344772 /* AppDelegate.swift */; };
 		014FC54224B6158600344772 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 014FC54124B6158600344772 /* Assets.xcassets */; };
-		014FC54524B6158600344772 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 014FC54324B6158600344772 /* MainMenu.xib */; };
+		014FC54524B6158600344772 /* ControlCenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 014FC54324B6158600344772 /* ControlCenter.xib */; };
 		014FC54E24B69AB000344772 /* StatusMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014FC54D24B69AB000344772 /* StatusMenuController.swift */; };
 		014FC55824B6F70D00344772 /* ControlCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014FC55724B6F70D00344772 /* ControlCenterView.swift */; };
 		014FC55A24B701EA00344772 /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014FC55924B701EA00344772 /* WeatherAPI.swift */; };
 		014FC56F24B7FA1200344772 /* blueutil in Resources */ = {isa = PBXBuildFile; fileRef = 014FC56E24B7FA1200344772 /* blueutil */; };
+		01F40F2424BD82E30031D2C0 /* do-not-disturb in Resources */ = {isa = PBXBuildFile; fileRef = 01F40F2324BD82E30031D2C0 /* do-not-disturb */; };
 		01FE0F3B24B965F200FD673A /* maclight in Resources */ = {isa = PBXBuildFile; fileRef = 01FE0F3A24B965F200FD673A /* maclight */; };
 		01FE0F5124B9BE1800FD673A /* PreferencesWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FE0F4F24B9BE1800FD673A /* PreferencesWindow.swift */; };
 		01FE0F5224B9BE1800FD673A /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01FE0F5024B9BE1800FD673A /* PreferencesWindow.xib */; };
 		01FE0F5724B9C94200FD673A /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FE0F5624B9C94200FD673A /* APIKey.swift */; };
+		01FE0F5924BC312200FD673A /* nightlight in Resources */ = {isa = PBXBuildFile; fileRef = 01FE0F5824BC312200FD673A /* nightlight */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		014FC53C24B6158200344772 /* Control Center.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Control Center.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		014FC53F24B6158200344772 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		014FC54124B6158600344772 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		014FC54424B6158600344772 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		014FC54424B6158600344772 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ControlCenter.xib; sourceTree = "<group>"; };
 		014FC54624B6158600344772 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		014FC54724B6158600344772 /* Control_Center.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Control_Center.entitlements; sourceTree = "<group>"; };
 		014FC54D24B69AB000344772 /* StatusMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMenuController.swift; sourceTree = "<group>"; };
 		014FC55724B6F70D00344772 /* ControlCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlCenterView.swift; sourceTree = "<group>"; };
 		014FC55924B701EA00344772 /* WeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
 		014FC56E24B7FA1200344772 /* blueutil */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = blueutil; sourceTree = "<group>"; };
+		01F40F2324BD82E30031D2C0 /* do-not-disturb */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "do-not-disturb"; sourceTree = "<group>"; };
 		01FE0F3A24B965F200FD673A /* maclight */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = maclight; sourceTree = "<group>"; };
 		01FE0F4F24B9BE1800FD673A /* PreferencesWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindow.swift; sourceTree = "<group>"; };
 		01FE0F5024B9BE1800FD673A /* PreferencesWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
 		01FE0F5624B9C94200FD673A /* APIKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		01FE0F5824BC312200FD673A /* nightlight */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = nightlight; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,11 +76,11 @@
 			children = (
 				014FC53F24B6158200344772 /* AppDelegate.swift */,
 				014FC54D24B69AB000344772 /* StatusMenuController.swift */,
-				01FE0F4F24B9BE1800FD673A /* PreferencesWindow.swift */,
 				014FC55724B6F70D00344772 /* ControlCenterView.swift */,
+				01FE0F4F24B9BE1800FD673A /* PreferencesWindow.swift */,
 				014FC55924B701EA00344772 /* WeatherAPI.swift */,
 				014FC54124B6158600344772 /* Assets.xcassets */,
-				014FC54324B6158600344772 /* MainMenu.xib */,
+				014FC54324B6158600344772 /* ControlCenter.xib */,
 				01FE0F5024B9BE1800FD673A /* PreferencesWindow.xib */,
 				014FC54624B6158600344772 /* Info.plist */,
 				014FC54724B6158600344772 /* Control_Center.entitlements */,
@@ -95,7 +99,9 @@
 			isa = PBXGroup;
 			children = (
 				014FC56E24B7FA1200344772 /* blueutil */,
+				01FE0F5824BC312200FD673A /* nightlight */,
 				01FE0F3A24B965F200FD673A /* maclight */,
+				01F40F2324BD82E30031D2C0 /* do-not-disturb */,
 			);
 			path = Dependencies;
 			sourceTree = "<group>";
@@ -158,10 +164,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01F40F2424BD82E30031D2C0 /* do-not-disturb in Resources */,
 				01FE0F3B24B965F200FD673A /* maclight in Resources */,
 				01FE0F5224B9BE1800FD673A /* PreferencesWindow.xib in Resources */,
+				01FE0F5924BC312200FD673A /* nightlight in Resources */,
 				014FC54224B6158600344772 /* Assets.xcassets in Resources */,
-				014FC54524B6158600344772 /* MainMenu.xib in Resources */,
+				014FC54524B6158600344772 /* ControlCenter.xib in Resources */,
 				014FC56F24B7FA1200344772 /* blueutil in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -185,12 +193,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		014FC54324B6158600344772 /* MainMenu.xib */ = {
+		014FC54324B6158600344772 /* ControlCenter.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				014FC54424B6158600344772 /* Base */,
 			);
-			name = MainMenu.xib;
+			name = ControlCenter.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -327,7 +335,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.12.2;
+				MARKETING_VERSION = "Beta 2";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fordApps.controlcenter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -356,7 +365,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.12.2;
+				MARKETING_VERSION = "Beta 2";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fordApps.controlcenter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

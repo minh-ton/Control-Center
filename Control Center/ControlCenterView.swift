@@ -11,7 +11,7 @@ import AudioToolbox
 import CoreWLAN
 
 class ControlCenterView: NSView {
-
+    
     @IBOutlet weak var weatherCityName: NSTextField!
     @IBOutlet weak var weatherTemp: NSTextField!
     @IBOutlet weak var weatherCons: NSTextField!
@@ -20,18 +20,136 @@ class ControlCenterView: NSView {
     @IBOutlet weak var weatherIMGView: NSImageView!
     @IBOutlet weak var dndBulb: NSImageView!
     @IBOutlet weak var dndStatus: NSTextField!
-    @IBOutlet weak var flushDNSCacheLabel: NSTextField!
     @IBOutlet weak var brightnessSlider: NSSlider!
     @IBOutlet weak var volumeSlider: NSSlider!
-    @IBOutlet weak var flushDNDCacheBulb: NSImageView!
     @IBOutlet weak var BluetoothBulb: NSImageView!
     @IBOutlet weak var BluetoothStatus: NSTextField!
     @IBOutlet weak var wifiBulb: NSImageView!
     @IBOutlet weak var wifiStatus: NSTextField!
     @IBOutlet weak var appearanceStatus: NSTextField!
     @IBOutlet weak var appearanceBulb: NSImageView!
+    @IBOutlet weak var nightshiftBulb: NSImageView!
+    @IBOutlet weak var nightshiftSlider: NSSlider!
+    @IBOutlet weak var nightshiftStatus: NSTextField!
+    @IBOutlet weak var musicApp: NSImageView!
+    @IBOutlet weak var songName: NSTextField!
+    @IBOutlet weak var songDescription: NSTextField!
+    @IBOutlet weak var pauseButton: NSButton!
     
-    @IBAction func switchAppearanceToggled(_ sender: Any) {
+    @IBAction func skipClicked(_ sender: NSButton) {
+        let Spotifyurl = NSWorkspace.shared.urlForApplication(withBundleIdentifier: "com.spotify.client")
+        if Spotifyurl == nil {
+            return
+        } else {
+            _ = shell("osascript -e 'if application \"Spotify\" is running then tell application \"Spotify\" to next track'")
+            let systemVersion = ProcessInfo.processInfo.operatingSystemVersion.minorVersion
+            if systemVersion == 12 || systemVersion == 13 || systemVersion == 14 {
+                _ = shell("osascript -e 'if application \"iTunes\" is running then tell application \"iTunes\" to next track'")
+            } else {
+                _ = shell("osascript -e 'if application \"Music\" is running then tell application \"Music\" to next track'")
+            }
+        }
+    }
+    
+    @IBAction func playpauseClicked(_ sender: NSButton) {
+        let Spotifyurl = NSWorkspace.shared.urlForApplication(withBundleIdentifier: "com.spotify.client")
+        if Spotifyurl == nil {
+            return
+        } else {
+            let SpotifyPlaying = shell("osascript -e 'if application \"Spotify\" is running then return \"isplaying\"'")
+            if SpotifyPlaying.contains("isplaying") {
+                _ = shell("osascript -e 'tell application \"Spotify\" to playpause'")
+                let SpotifyStatus = shell("osascript -e 'tell application \"Spotify\" to return the player state as text'")
+                if SpotifyStatus.contains("playing") {
+                    pauseButton.image = NSImage(named: "NSTouchBarPauseTemplate")
+                } else {
+                    pauseButton.image = NSImage(named: "NSTouchBarPlayTemplate")
+                }
+                let playingSongName = shell("osascript -e 'tell application \"Spotify\" to return the name of the current track'")
+                let playingsongArtist = shell("osascript -e 'tell application \"Spotify\" to return the artist of the current track'")
+                songDescription.isHidden = false
+                if playingSongName.count < 10 {
+                    songName.stringValue = "\(playingSongName)"
+                } else if playingSongName == " " {
+                    songName.stringValue = "Not Playing"
+                } else {
+                    songName.stringValue = "\(playingSongName.prefix(10))..."
+                }
+                if playingsongArtist.count < 15 {
+                    songDescription.stringValue = "\(playingsongArtist)"
+                } else {
+                    songDescription.stringValue = "\(playingsongArtist.prefix(15))..."
+                }
+                songName.toolTip = "\(playingSongName)"
+                songDescription.toolTip = "\(playingsongArtist)"
+            } else {
+                let systemVersion = ProcessInfo.processInfo.operatingSystemVersion.minorVersion
+                if systemVersion == 12 || systemVersion == 13 || systemVersion == 14 {
+                    let MusicPlaying = shell("osascript -e 'if application \"iTunes\" is running then return \"isplaying\"'")
+                    if MusicPlaying.contains("isplaying") {
+                        _ = shell("osascript -e 'tell application \"iTunes\" to playpause'")
+                        let MusicStatus = shell("osascript -e 'tell application \"iTunes\" to return the player state as text'")
+                        if MusicStatus.contains("playing") {
+                            pauseButton.image = NSImage(named: "NSTouchBarPauseTemplate")
+                        } else {
+                            pauseButton.image = NSImage(named: "NSTouchBarPlayTemplate")
+                        }
+                        let playingSongName = shell("osascript -e 'tell application \"iTunes\" to if exists current track then return the name of the current track'")
+                        let playingsongArtist = shell("osascript -e 'tell application \"iTunes\" to if exists current track then return the artist of the current track'")
+                        songDescription.isHidden = false
+                        if playingSongName.count < 10 {
+                            songName.stringValue = "\(playingSongName)"
+                        } else if playingSongName == " " {
+                            songName.stringValue = "Not Playing"
+                        } else {
+                            songName.stringValue = "\(playingSongName.prefix(10))..."
+                        }
+                        if playingsongArtist.count < 15 {
+                            songDescription.stringValue = "\(playingsongArtist)"
+                        } else {
+                            songDescription.stringValue = "\(playingsongArtist.prefix(15))..."
+                        }
+                        songName.toolTip = "\(playingSongName)"
+                        songDescription.toolTip = "\(playingsongArtist)"
+                    } else {
+                        return
+                    }
+                } else {
+                    let MusicPlaying = shell("osascript -e 'if application \"Music\" is running then return \"isplaying\"'")
+                    if MusicPlaying.contains("isplaying") {
+                        _ = shell("osascript -e 'tell application \"Music\" to playpause'")
+                        let MusicStatus = shell("osascript -e 'tell application \"Music\" to return the player state as text'")
+                        if MusicStatus.contains("playing") {
+                            pauseButton.image = NSImage(named: "NSTouchBarPauseTemplate")
+                        } else {
+                            pauseButton.image = NSImage(named: "NSTouchBarPlayTemplate")
+                        }
+                        let playingSongName = shell("osascript -e 'tell application \"Music\" to if exists current track then return the name of the current track'")
+                        let playingsongArtist = shell("osascript -e 'tell application \"Music\" to if exists current track then return the artist of the current track'")
+                        songDescription.isHidden = false
+                        if playingSongName.count < 10 {
+                            songName.stringValue = "\(playingSongName)"
+                        } else if playingSongName == " " {
+                            songName.stringValue = "Not Playing"
+                        } else {
+                            songName.stringValue = "\(playingSongName.prefix(10))..."
+                        }
+                        if playingsongArtist.count < 15 {
+                            songDescription.stringValue = "\(playingsongArtist)"
+                        } else {
+                            songDescription.stringValue = "\(playingsongArtist.prefix(15))..."
+                        }
+                        songName.toolTip = "\(playingSongName)"
+                        songDescription.toolTip = "\(playingsongArtist)"
+                    } else {
+                        return
+                    }
+                }
+            }
+        }
+    }
+    
+    @IBAction func switchAppearanceToggled(_ sender: NSButton) {
         switchAppearance()
         let currentAppearance = getCurrentAppearance()
         if currentAppearance.contains("true") {
@@ -41,23 +159,41 @@ class ControlCenterView: NSView {
         }
     }
     
-    @IBAction func sleepDisplayToggled(_ sender: Any) {
+    @IBAction func nightshiftToggled(_ sender: NSButton) {
+        let nightlightpath = Bundle.main.path(forResource: "nightlight", ofType:nil)!
+        let nightshiftstate = shell("\"\(nightlightpath)\" status")
+        if nightshiftstate.contains("off") {
+            _ = shell("\"\(nightlightpath)\" on")
+            nightshiftBulb.image = NSImage(named: "bulb_on")
+            nightshiftStatus.stringValue = "Turned on!"
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                self.nightshiftStatus.stringValue = "Night Shift"
+            }
+        } else if nightshiftstate.contains("on") {
+            _ = shell("\"\(nightlightpath)\" off")
+            nightshiftBulb.image = NSImage(named: "bulb_off")
+            nightshiftStatus.stringValue = "Turned off!"
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                self.nightshiftStatus.stringValue = "Night Shift"
+            }
+        }
+    }
+    
+    @IBAction func nightshiftWarmedChanged(_ sender: NSSlider) {
+        let warmth = Int(nightshiftSlider!.doubleValue)
+        let nightlightpath = Bundle.main.path(forResource: "nightlight", ofType:nil)!
+        _ = shell("\"\(nightlightpath)\" temp \(warmth)")
+    }
+    
+    
+    @IBAction func sleepDisplayToggled(_ sender: NSButton) {
         sleepDisplay()
     }
     
-    @IBAction func bluetoothClicked(_ sender: Any) {
+    @IBAction func bluetoothClicked(_ sender: NSButton) {
         toggleBluetooth()
     }
     
-    @IBAction func flushedDNDCache(_ sender: Any) {
-        _ = shell("dscacheutil -flushcache")
-        flushDNSCacheLabel.stringValue = "Done Flushing!"
-        let seconds = 10.0
-        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-            self.flushDNSCacheLabel.stringValue = "Flush DNS Cache"
-        }
-    }
-
     @IBAction func brightnessChanged(_ sender: NSSlider) {
         let brightness = Float(brightnessSlider!.doubleValue) / 100
         brightnessSlider.isContinuous = true
@@ -70,11 +206,11 @@ class ControlCenterView: NSView {
         setVolumeLevel(level: volumelevel)
     }
     
-    @IBAction func dndStateChanged(_ sender: Any) {
+    @IBAction func dndStateChanged(_ sender: NSButton) {
         updateDNDStatus()
     }
     
-    @IBAction func wifiToggled(_ sender: Any) {
+    @IBAction func wifiToggled(_ sender: NSButton) {
         let networkstatus = shell("/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -s")
         if networkstatus == "" {
             _ = shell("networksetup -setairportpower en0 on")
@@ -88,7 +224,7 @@ class ControlCenterView: NSView {
     }
     
     func switchAppearance() {
-         _ = shell("osascript -e 'tell app \"System Events\" to tell appearance preferences to set dark mode to not dark mode'")
+        _ = shell("osascript -e 'tell app \"System Events\" to tell appearance preferences to set dark mode to not dark mode'")
     }
     
     func getCurrentAppearance() -> String {
@@ -123,18 +259,18 @@ class ControlCenterView: NSView {
         
         DispatchQueue.main.async {
             self.weatherCityName.stringValue = "Weather in \(weather.city)"
-            self.weatherTemp.stringValue = "Temp: \(currentTempRound)˚\(tempUnit!)"
-            self.weatherCons.stringValue = "Cond: \(weather.conditions)"
-            self.weatherPressure.stringValue = "Pr: \(weather.pressure) hpa"
-            self.weatherHumid.stringValue = "Hum: \(weather.humidity)%"
+            self.weatherTemp.stringValue = "Temperature: \(currentTempRound)˚\(tempUnit!)"
+            self.weatherCons.stringValue = "\(weather.conditions)"
+            self.weatherPressure.stringValue = "Pressure: \(weather.pressure) hpa"
+            self.weatherHumid.stringValue = "Humidity: \(weather.humidity)%"
             self.weatherIMGView.image = NSImage(named: weather.icon)
         }
     }
     
     func updateDNDStatus() {
-        let dndPlist = UserDefaults(suiteName: "com.apple.notificationcenterui")
-        let status = dndPlist!.bool(forKey: "doNotDisturb")
-        if status == false {
+        let dndshellpath = Bundle.main.path(forResource: "do-not-disturb", ofType:nil)!
+        let status = shell("\"\(dndshellpath)\" status")
+        if status.contains("off") {
             enableDND()
             dndBulb.image = NSImage(named: "bulb_on")
             dndStatus.stringValue = "On"
@@ -146,19 +282,13 @@ class ControlCenterView: NSView {
     }
     
     func enableDND() {
-        CFPreferencesSetValue("dndStart" as CFString, CGFloat(0) as CFPropertyList, "com.apple.notificationcenterui" as CFString, kCFPreferencesCurrentUser, kCFPreferencesCurrentHost)
-        CFPreferencesSetValue("dndEnd" as CFString, CGFloat(1440) as CFPropertyList, "com.apple.notificationcenterui" as CFString, kCFPreferencesCurrentUser, kCFPreferencesCurrentHost)
-        CFPreferencesSetValue("doNotDisturb" as CFString, true as CFPropertyList, "com.apple.notificationcenterui" as CFString, kCFPreferencesCurrentUser, kCFPreferencesCurrentHost)
-        CFPreferencesSynchronize("com.apple.notificationcenterui" as CFString, kCFPreferencesCurrentUser, kCFPreferencesCurrentHost)
-        DistributedNotificationCenter.default().postNotificationName(NSNotification.Name(rawValue: "com.apple.notificationcenterui.dndprefs_changed"), object: nil, userInfo: nil, deliverImmediately: true)
+        let dndshellpath = Bundle.main.path(forResource: "do-not-disturb", ofType:nil)!
+        _ = shell("\"\(dndshellpath)\" on")
     }
     
     func disableDND() {
-        CFPreferencesSetValue("dndStart" as CFString, nil, "com.apple.notificationcenterui" as CFString, kCFPreferencesCurrentUser, kCFPreferencesCurrentHost)
-        CFPreferencesSetValue("dndEnd" as CFString, nil, "com.apple.notificationcenterui" as CFString, kCFPreferencesCurrentUser, kCFPreferencesCurrentHost)
-        CFPreferencesSetValue("doNotDisturb" as CFString, false as CFPropertyList, "com.apple.notificationcenterui" as CFString, kCFPreferencesCurrentUser, kCFPreferencesCurrentHost)
-        CFPreferencesSynchronize("com.apple.notificationcenterui" as CFString, kCFPreferencesCurrentUser, kCFPreferencesCurrentHost)
-        DistributedNotificationCenter.default().postNotificationName(NSNotification.Name(rawValue: "com.apple.notificationcenterui.dndprefs_changed"), object: nil, userInfo: nil, deliverImmediately: true)
+        let dndshellpath = Bundle.main.path(forResource: "do-not-disturb", ofType:nil)!
+        _ = shell("\"\(dndshellpath)\" off")
     }
     
     func setBrightnessLevel(level: Float) {
@@ -174,14 +304,14 @@ class ControlCenterView: NSView {
     }
     
     func getDisplayBrightness() -> Float {
-
+        
         var brightness: Float = 1.0
         var service: io_object_t = 1
         var iterator: io_iterator_t = 0
         let result: kern_return_t = IOServiceGetMatchingServices(kIOMasterPortDefault, IOServiceMatching("IODisplayConnect"), &iterator)
-
+        
         if result == kIOReturnSuccess {
-
+            
             while service != 0 {
                 service = IOIteratorNext(iterator)
                 IODisplayGetFloatParameter(service, 0, kIODisplayBrightnessKey as CFString, &brightness)
@@ -194,37 +324,37 @@ class ControlCenterView: NSView {
     func setVolumeLevel(level: Float32) {
         var defaultOutputDeviceID = AudioDeviceID(0)
         var defaultOutputDeviceIDSize = UInt32(MemoryLayout.size(ofValue: defaultOutputDeviceID))
-
+        
         var getDefaultOutputDevicePropertyAddress = AudioObjectPropertyAddress(
             mSelector: kAudioHardwarePropertyDefaultOutputDevice,
             mScope: kAudioObjectPropertyScopeGlobal,
             mElement: AudioObjectPropertyElement(kAudioObjectPropertyElementMaster))
-
+        
         AudioObjectGetPropertyData(AudioObjectID(kAudioObjectSystemObject), &getDefaultOutputDevicePropertyAddress, 0, nil, &defaultOutputDeviceIDSize, &defaultOutputDeviceID)
         
         var volume = Float32(level) // 0.0 ... 1.0
         let volumeSize = UInt32(MemoryLayout.size(ofValue: volume))
-
+        
         var volumePropertyAddress = AudioObjectPropertyAddress(
             mSelector: kAudioHardwareServiceDeviceProperty_VirtualMasterVolume,
             mScope: kAudioDevicePropertyScopeOutput,
             mElement: kAudioObjectPropertyElementMaster)
-
+        
         AudioObjectSetPropertyData(defaultOutputDeviceID, &volumePropertyAddress, 0, nil, volumeSize, &volume)
     }
     
     func shell(_ command: String) -> String {
         let task = Process()
         let pipe = Pipe()
-
+        
         task.standardOutput = pipe
         task.arguments = ["-c", command]
         task.launchPath = "/bin/bash"
         task.launch()
-
+        
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
         let output = String(data: data, encoding: .utf8)!
-
+        
         return output
     }
     
