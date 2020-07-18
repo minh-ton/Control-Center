@@ -1,0 +1,5 @@
+${PODS_ROOT}/Target Support Files/Pods-Control Center/Pods-Control Center-frameworks.sh
+${PODS_ROOT}/Sparkle/Sparkle.framework
+${PODS_ROOT}/Sparkle/Sparkle.framework.dSYM
+${BUILT_PRODUCTS_DIR}/SpotifyAppleScript/SpotifyAppleScript.framework
+${BUILT_PRODUCTS_DIR}/iTunesAppleScript/iTunesAppleScript.framework

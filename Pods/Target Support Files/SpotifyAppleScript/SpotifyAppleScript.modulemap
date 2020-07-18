@@ -1,0 +1,6 @@
+framework module SpotifyAppleScript {
+  umbrella header "SpotifyAppleScript-umbrella.h"
+
+  export *
+  module * { export * }
+}

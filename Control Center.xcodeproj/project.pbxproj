@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,8 +14,8 @@
 		014FC55824B6F70D00344772 /* ControlCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014FC55724B6F70D00344772 /* ControlCenterView.swift */; };
 		014FC55A24B701EA00344772 /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014FC55924B701EA00344772 /* WeatherAPI.swift */; };
 		014FC56F24B7FA1200344772 /* blueutil in Resources */ = {isa = PBXBuildFile; fileRef = 014FC56E24B7FA1200344772 /* blueutil */; };
+		01BEA6E324C2EEE3002828E1 /* Pods_Control_Center.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 101B2B451AB8F61B5481FD5E /* Pods_Control_Center.framework */; };
 		01F40F2424BD82E30031D2C0 /* do-not-disturb in Resources */ = {isa = PBXBuildFile; fileRef = 01F40F2324BD82E30031D2C0 /* do-not-disturb */; };
-		01FE0F3B24B965F200FD673A /* maclight in Resources */ = {isa = PBXBuildFile; fileRef = 01FE0F3A24B965F200FD673A /* maclight */; };
 		01FE0F5124B9BE1800FD673A /* PreferencesWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FE0F4F24B9BE1800FD673A /* PreferencesWindow.swift */; };
 		01FE0F5224B9BE1800FD673A /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01FE0F5024B9BE1800FD673A /* PreferencesWindow.xib */; };
 		01FE0F5724B9C94200FD673A /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FE0F5624B9C94200FD673A /* APIKey.swift */; };
@@ -34,11 +34,13 @@
 		014FC55924B701EA00344772 /* WeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
 		014FC56E24B7FA1200344772 /* blueutil */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = blueutil; sourceTree = "<group>"; };
 		01F40F2324BD82E30031D2C0 /* do-not-disturb */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "do-not-disturb"; sourceTree = "<group>"; };
-		01FE0F3A24B965F200FD673A /* maclight */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = maclight; sourceTree = "<group>"; };
 		01FE0F4F24B9BE1800FD673A /* PreferencesWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindow.swift; sourceTree = "<group>"; };
 		01FE0F5024B9BE1800FD673A /* PreferencesWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
 		01FE0F5624B9C94200FD673A /* APIKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		01FE0F5824BC312200FD673A /* nightlight */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = nightlight; sourceTree = "<group>"; };
+		101B2B451AB8F61B5481FD5E /* Pods_Control_Center.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Control_Center.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		10FF59AA878FAE0476FD6102 /* Pods-Control Center.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Control Center.release.xcconfig"; path = "Target Support Files/Pods-Control Center/Pods-Control Center.release.xcconfig"; sourceTree = "<group>"; };
+		EE321580286F2268FBD02F40 /* Pods-Control Center.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Control Center.debug.xcconfig"; path = "Target Support Files/Pods-Control Center/Pods-Control Center.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01BEA6E324C2EEE3002828E1 /* Pods_Control_Center.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +61,7 @@
 				01FE0F5624B9C94200FD673A /* APIKey.swift */,
 				014FC53E24B6158200344772 /* Control Center */,
 				014FC53D24B6158200344772 /* Products */,
+				1A8020EC871BCE00DC23F806 /* Pods */,
 				014FC55B24B70A8300344772 /* Frameworks */,
 				01FE0F5524B9C5B000FD673A /* Dependencies */,
 			);
@@ -91,6 +95,7 @@
 		014FC55B24B70A8300344772 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				101B2B451AB8F61B5481FD5E /* Pods_Control_Center.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -100,10 +105,18 @@
 			children = (
 				014FC56E24B7FA1200344772 /* blueutil */,
 				01FE0F5824BC312200FD673A /* nightlight */,
-				01FE0F3A24B965F200FD673A /* maclight */,
 				01F40F2324BD82E30031D2C0 /* do-not-disturb */,
 			);
 			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		1A8020EC871BCE00DC23F806 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EE321580286F2268FBD02F40 /* Pods-Control Center.debug.xcconfig */,
+				10FF59AA878FAE0476FD6102 /* Pods-Control Center.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -113,9 +126,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 014FC54A24B6158600344772 /* Build configuration list for PBXNativeTarget "Control Center" */;
 			buildPhases = (
+				D45C7DDD48EB6D312432B06D /* [CP] Check Pods Manifest.lock */,
 				014FC53824B6158200344772 /* Sources */,
 				014FC53924B6158200344772 /* Frameworks */,
 				014FC53A24B6158200344772 /* Resources */,
+				FAE5FABF5BCB009AA6D16A98 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -165,7 +180,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				01F40F2424BD82E30031D2C0 /* do-not-disturb in Resources */,
-				01FE0F3B24B965F200FD673A /* maclight in Resources */,
 				01FE0F5224B9BE1800FD673A /* PreferencesWindow.xib in Resources */,
 				01FE0F5924BC312200FD673A /* nightlight in Resources */,
 				014FC54224B6158600344772 /* Assets.xcassets in Resources */,
@@ -175,6 +189,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D45C7DDD48EB6D312432B06D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Control Center-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FAE5FABF5BCB009AA6D16A98 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Control Center/Pods-Control Center-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Control Center/Pods-Control Center-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Control Center/Pods-Control Center-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		014FC53824B6158200344772 /* Sources */ = {
@@ -319,16 +375,19 @@
 		};
 		014FC54B24B6158600344772 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE321580286F2268FBD02F40 /* Pods-Control Center.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "Control Center";
 				CODE_SIGN_ENTITLEMENTS = "Control Center/Control_Center.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = "Beta 3";
 				DEVELOPMENT_TEAM = NAR5D6HWAD;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Control Center/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -336,7 +395,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12.2;
-				MARKETING_VERSION = "Beta 2";
+				MARKETING_VERSION = "Beta 3";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fordApps.controlcenter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -349,16 +408,19 @@
 		};
 		014FC54C24B6158600344772 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 10FF59AA878FAE0476FD6102 /* Pods-Control Center.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "Control Center";
 				CODE_SIGN_ENTITLEMENTS = "Control Center/Control_Center.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = "Beta 3";
 				DEVELOPMENT_TEAM = NAR5D6HWAD;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Control Center/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -366,7 +428,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12.2;
-				MARKETING_VERSION = "Beta 2";
+				MARKETING_VERSION = "Beta 3";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fordApps.controlcenter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

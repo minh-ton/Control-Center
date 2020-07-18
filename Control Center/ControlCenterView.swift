@@ -9,6 +9,11 @@
 import Cocoa
 import AudioToolbox
 import CoreWLAN
+import SpotifyAppleScript
+import iTunesAppleScript
+
+/* let systemVersion = ProcessInfo.processInfo.operatingSystemVersion.minorVersion
+if systemVersion == 12 || systemVersion == 13 || systemVersion == 14 { */
 
 class ControlCenterView: NSView {
     
@@ -36,17 +41,74 @@ class ControlCenterView: NSView {
     @IBOutlet weak var songDescription: NSTextField!
     @IBOutlet weak var pauseButton: NSButton!
     
+    
     @IBAction func skipClicked(_ sender: NSButton) {
         let Spotifyurl = NSWorkspace.shared.urlForApplication(withBundleIdentifier: "com.spotify.client")
         if Spotifyurl == nil {
             return
         } else {
-            _ = shell("osascript -e 'if application \"Spotify\" is running then tell application \"Spotify\" to next track'")
-            let systemVersion = ProcessInfo.processInfo.operatingSystemVersion.minorVersion
-            if systemVersion == 12 || systemVersion == 13 || systemVersion == 14 {
-                _ = shell("osascript -e 'if application \"iTunes\" is running then tell application \"iTunes\" to next track'")
+            let spotifyIsRunning = NSRunningApplication.runningApplications(withBundleIdentifier: "com.spotify.client").count
+            if spotifyIsRunning > 0 {
+                SpotifyAppleScript.playNext()
+                songDescription.isHidden = false
+                let playingSongName = SpotifyAppleScript.currentTrack.title
+                let playingsongArtist = SpotifyAppleScript.currentTrack.artist
+                if playingSongName == nil && playingsongArtist == nil {
+                    songName.stringValue = "Not Playing"
+                    songDescription.isHidden = true
+                } else {
+                    if playingSongName!.count < 10 {
+                        songName.stringValue = "\(String(describing: playingSongName!))"
+                    } else {
+                        songName.stringValue = "\(String(describing: playingSongName!.prefix(10)))..."
+                    }
+                    if playingsongArtist!.count < 15 {
+                        songDescription.stringValue = "\(String(describing: playingsongArtist!))"
+                    } else {
+                        songDescription.stringValue = "\(String(describing: playingsongArtist!.prefix(15)))..."
+                    }
+                }
+                if SpotifyAppleScript.currentTrack.artworkUrl == nil {
+                    musicApp.image = NSImage(named: "music")
+                } else {
+                    let playingsongArtwork = NSImage(contentsOf: URL(string: SpotifyAppleScript.currentTrack.artworkUrl!)!)
+                    musicApp.image = playingsongArtwork
+                }
             } else {
-                _ = shell("osascript -e 'if application \"Music\" is running then tell application \"Music\" to next track'")
+                let systemVersion = ProcessInfo.processInfo.operatingSystemVersion.minorVersion
+                var musicIsRunning = 0
+                if systemVersion == 12 || systemVersion == 13 || systemVersion == 14 {
+                    musicIsRunning = NSRunningApplication.runningApplications(withBundleIdentifier: "com.apple.iTunes").count
+                } else {
+                    musicIsRunning = NSRunningApplication.runningApplications(withBundleIdentifier: "com.apple.Music").count
+                }
+                if musicIsRunning > 0 {
+                    iTunesAppleScript.playNext()
+                    songDescription.isHidden = false
+                    let playingSongName = iTunesAppleScript.currentTrack.title
+                    let playingsongArtist = iTunesAppleScript.currentTrack.artist
+                    if playingSongName == nil && playingsongArtist == nil {
+                        songName.stringValue = "Not Playing"
+                        songDescription.isHidden = true
+                    } else {
+                        if playingSongName!.count < 10 {
+                            songName.stringValue = "\(String(describing: playingSongName!))"
+                        } else {
+                            songName.stringValue = "\(String(describing: playingSongName!.prefix(10)))..."
+                        }
+                        if playingsongArtist!.count < 15 {
+                            songDescription.stringValue = "\(String(describing: playingsongArtist!))"
+                        } else {
+                            songDescription.stringValue = "\(String(describing: playingsongArtist!.prefix(15)))..."
+                        }
+                    }
+                    if iTunesAppleScript.currentTrack.artworkUrl == nil {
+                        musicApp.image = NSImage(named: "music")
+                    } else {
+                        let playingsongArtwork = NSImage(contentsOf: URL(string: iTunesAppleScript.currentTrack.artworkUrl!)!)
+                        musicApp.image = playingsongArtwork
+                    }
+                }
             }
         }
     }
@@ -56,93 +118,80 @@ class ControlCenterView: NSView {
         if Spotifyurl == nil {
             return
         } else {
-            let SpotifyPlaying = shell("osascript -e 'if application \"Spotify\" is running then return \"isplaying\"'")
-            if SpotifyPlaying.contains("isplaying") {
-                _ = shell("osascript -e 'tell application \"Spotify\" to playpause'")
-                let SpotifyStatus = shell("osascript -e 'tell application \"Spotify\" to return the player state as text'")
-                if SpotifyStatus.contains("playing") {
+            let spotifyIsRunning = NSRunningApplication.runningApplications(withBundleIdentifier: "com.spotify.client").count
+            if spotifyIsRunning > 0 {
+                switch SpotifyAppleScript.playerState {
+                case .paused:
+                    SpotifyAppleScript.playerState = .playing
                     pauseButton.image = NSImage(named: "NSTouchBarPauseTemplate")
-                } else {
+                case .playing:
+                    SpotifyAppleScript.playerState = .paused
                     pauseButton.image = NSImage(named: "NSTouchBarPlayTemplate")
                 }
-                let playingSongName = shell("osascript -e 'tell application \"Spotify\" to return the name of the current track'")
-                let playingsongArtist = shell("osascript -e 'tell application \"Spotify\" to return the artist of the current track'")
                 songDescription.isHidden = false
-                if playingSongName.count < 10 {
-                    songName.stringValue = "\(playingSongName)"
-                } else if playingSongName == " " {
+                let playingSongName = SpotifyAppleScript.currentTrack.title
+                let playingsongArtist = SpotifyAppleScript.currentTrack.artist
+                if playingSongName == nil && playingsongArtist == nil {
                     songName.stringValue = "Not Playing"
+                    songDescription.isHidden = true
                 } else {
-                    songName.stringValue = "\(playingSongName.prefix(10))..."
+                    if playingSongName!.count < 10 {
+                        songName.stringValue = "\(String(describing: playingSongName!))"
+                    } else {
+                        songName.stringValue = "\(String(describing: playingSongName!.prefix(10)))..."
+                    }
+                    if playingsongArtist!.count < 15 {
+                        songDescription.stringValue = "\(String(describing: playingsongArtist!))"
+                    } else {
+                        songDescription.stringValue = "\(String(describing: playingsongArtist!.prefix(15)))..."
+                    }
                 }
-                if playingsongArtist.count < 15 {
-                    songDescription.stringValue = "\(playingsongArtist)"
+                if SpotifyAppleScript.currentTrack.artworkUrl == nil {
+                    musicApp.image = NSImage(named: "music")
                 } else {
-                    songDescription.stringValue = "\(playingsongArtist.prefix(15))..."
+                    let playingsongArtwork = NSImage(contentsOf: URL(string: SpotifyAppleScript.currentTrack.artworkUrl!)!)
+                    musicApp.image = playingsongArtwork
                 }
-                songName.toolTip = "\(playingSongName)"
-                songDescription.toolTip = "\(playingsongArtist)"
             } else {
                 let systemVersion = ProcessInfo.processInfo.operatingSystemVersion.minorVersion
+                var musicIsRunning = 0
                 if systemVersion == 12 || systemVersion == 13 || systemVersion == 14 {
-                    let MusicPlaying = shell("osascript -e 'if application \"iTunes\" is running then return \"isplaying\"'")
-                    if MusicPlaying.contains("isplaying") {
-                        _ = shell("osascript -e 'tell application \"iTunes\" to playpause'")
-                        let MusicStatus = shell("osascript -e 'tell application \"iTunes\" to return the player state as text'")
-                        if MusicStatus.contains("playing") {
-                            pauseButton.image = NSImage(named: "NSTouchBarPauseTemplate")
-                        } else {
-                            pauseButton.image = NSImage(named: "NSTouchBarPlayTemplate")
-                        }
-                        let playingSongName = shell("osascript -e 'tell application \"iTunes\" to if exists current track then return the name of the current track'")
-                        let playingsongArtist = shell("osascript -e 'tell application \"iTunes\" to if exists current track then return the artist of the current track'")
-                        songDescription.isHidden = false
-                        if playingSongName.count < 10 {
-                            songName.stringValue = "\(playingSongName)"
-                        } else if playingSongName == " " {
-                            songName.stringValue = "Not Playing"
-                        } else {
-                            songName.stringValue = "\(playingSongName.prefix(10))..."
-                        }
-                        if playingsongArtist.count < 15 {
-                            songDescription.stringValue = "\(playingsongArtist)"
-                        } else {
-                            songDescription.stringValue = "\(playingsongArtist.prefix(15))..."
-                        }
-                        songName.toolTip = "\(playingSongName)"
-                        songDescription.toolTip = "\(playingsongArtist)"
-                    } else {
-                        return
-                    }
+                    musicIsRunning = NSRunningApplication.runningApplications(withBundleIdentifier: "com.apple.iTunes").count
                 } else {
-                    let MusicPlaying = shell("osascript -e 'if application \"Music\" is running then return \"isplaying\"'")
-                    if MusicPlaying.contains("isplaying") {
-                        _ = shell("osascript -e 'tell application \"Music\" to playpause'")
-                        let MusicStatus = shell("osascript -e 'tell application \"Music\" to return the player state as text'")
-                        if MusicStatus.contains("playing") {
-                            pauseButton.image = NSImage(named: "NSTouchBarPauseTemplate")
-                        } else {
-                            pauseButton.image = NSImage(named: "NSTouchBarPlayTemplate")
-                        }
-                        let playingSongName = shell("osascript -e 'tell application \"Music\" to if exists current track then return the name of the current track'")
-                        let playingsongArtist = shell("osascript -e 'tell application \"Music\" to if exists current track then return the artist of the current track'")
-                        songDescription.isHidden = false
-                        if playingSongName.count < 10 {
-                            songName.stringValue = "\(playingSongName)"
-                        } else if playingSongName == " " {
-                            songName.stringValue = "Not Playing"
-                        } else {
-                            songName.stringValue = "\(playingSongName.prefix(10))..."
-                        }
-                        if playingsongArtist.count < 15 {
-                            songDescription.stringValue = "\(playingsongArtist)"
-                        } else {
-                            songDescription.stringValue = "\(playingsongArtist.prefix(15))..."
-                        }
-                        songName.toolTip = "\(playingSongName)"
-                        songDescription.toolTip = "\(playingsongArtist)"
+                    musicIsRunning = NSRunningApplication.runningApplications(withBundleIdentifier: "com.apple.Music").count
+                }
+                if musicIsRunning > 0 {
+                    switch iTunesAppleScript.playerState {
+                    case .paused:
+                        iTunesAppleScript.playerState = .playing
+                        pauseButton.image = NSImage(named: "NSTouchBarPauseTemplate")
+                    case .playing:
+                        iTunesAppleScript.playerState = .paused
+                        pauseButton.image = NSImage(named: "NSTouchBarPlayTemplate")
+                    }
+                    songDescription.isHidden = false
+                    let playingSongName = iTunesAppleScript.currentTrack.title
+                    let playingsongArtist = iTunesAppleScript.currentTrack.artist
+                    if playingSongName == nil && playingsongArtist == nil {
+                        songName.stringValue = "Not Playing"
+                        songDescription.isHidden = true
                     } else {
-                        return
+                        if playingSongName!.count < 10 {
+                            songName.stringValue = "\(String(describing: playingSongName!))"
+                        } else {
+                            songName.stringValue = "\(String(describing: playingSongName!.prefix(10)))..."
+                        }
+                        if playingsongArtist!.count < 15 {
+                            songDescription.stringValue = "\(String(describing: playingsongArtist!))"
+                        } else {
+                            songDescription.stringValue = "\(String(describing: playingsongArtist!.prefix(15)))..."
+                        }
+                    }
+                    if iTunesAppleScript.currentTrack.artworkUrl == nil {
+                        musicApp.image = NSImage(named: "music")
+                    } else {
+                        let playingsongArtwork = NSImage(contentsOf: URL(string: iTunesAppleScript.currentTrack.artworkUrl!)!)
+                        musicApp.image = playingsongArtwork
                     }
                 }
             }
@@ -152,7 +201,7 @@ class ControlCenterView: NSView {
     @IBAction func switchAppearanceToggled(_ sender: NSButton) {
         switchAppearance()
         let currentAppearance = getCurrentAppearance()
-        if currentAppearance.contains("true") {
+        if currentAppearance == true {
             appearanceStatus.stringValue = "Dark"
         } else {
             appearanceStatus.stringValue = "Light"
@@ -227,13 +276,12 @@ class ControlCenterView: NSView {
         _ = shell("osascript -e 'tell app \"System Events\" to tell appearance preferences to set dark mode to not dark mode'")
     }
     
-    func getCurrentAppearance() -> String {
-        return shell("osascript -e 'tell application \"System Events\" to return dark mode of appearance preferences'")
+    func getCurrentAppearance() -> Bool {
+        return UserDefaults.standard.string(forKey: "AppleInterfaceStyle") == "Dark"
     }
     
     func sleepDisplay() {
-        let maclightpath = Bundle.main.path(forResource: "maclight", ofType:nil)!
-        _ = shell("\"\(maclightpath)\" --ds")
+        _ = shell("pmset displaysleepnow")
     }
     
     func toggleBluetooth() {

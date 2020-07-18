@@ -1,0 +1,6 @@
+framework module iTunesAppleScript {
+  umbrella header "iTunesAppleScript-umbrella.h"
+
+  export *
+  module * { export * }
+}

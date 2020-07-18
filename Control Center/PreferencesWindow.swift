@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Sparkle
 
 class PreferencesWindow: NSWindowController, NSWindowDelegate {
     
@@ -19,6 +20,10 @@ class PreferencesWindow: NSWindowController, NSWindowDelegate {
         saveButton.isEnabled = false
     }
     
+    @IBAction func checkForUpdates(_ sender: Any) {
+        let updater = SUUpdater.shared()
+        updater?.checkForUpdates(self)
+    }
     
     override var windowNibName : String! {
         return "PreferencesWindow"

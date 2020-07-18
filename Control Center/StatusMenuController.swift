@@ -12,6 +12,8 @@ import CoreWLAN
 import CoreBluetooth
 import IOKit.ps
 import IOKit
+import SpotifyAppleScript
+import iTunesAppleScript
 
 let DEFAULT_CITY = "North Pole"
 
@@ -83,17 +85,15 @@ class StatusMenuController: NSObject, NSMenuDelegate, WeatherAPIDelegate {
         
         // Insert code here to initialize your application
         weatherAPI = WeatherAPI(delegate: self)
-        
         updateInfomation()
         updateAll()
     }
     
     @IBAction func preferencesClicked(_ sender: Any) {
-        preferencesWindow.showWindow(nil)
+        preferencesWindow.showWindow(self)
     }
     
     func updateAll() {
-        checkAppearanceCompat()
         updateBrightnessSlider()
         updateVolumeSlider()
         updateWifiNetworkString()
@@ -103,14 +103,7 @@ class StatusMenuController: NSObject, NSMenuDelegate, WeatherAPIDelegate {
         updateNightShift()
         checkSpotifyPlaying()
         checkMusicPlaying()
-    }
-    
-    func checkAppearanceCompat() {
-        let systemVersion = ProcessInfo.processInfo.operatingSystemVersion.minorVersion
-        if systemVersion == 12 || systemVersion == 13 {
-            appearanceSwitchButton.isEnabled = false
-            appearanceStatus.stringValue = "Not Available"
-        }
+        updateWeather()
     }
     
     var timer = Timer()
@@ -124,6 +117,7 @@ class StatusMenuController: NSObject, NSMenuDelegate, WeatherAPIDelegate {
         timer = Timer.scheduledTimer(timeInterval: 4.0, target: self, selector:#selector(self.updateNightShift) , userInfo: nil, repeats: true)
         timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector:#selector(self.checkSpotifyPlaying) , userInfo: nil, repeats: true)
         timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector:#selector(self.checkMusicPlaying) , userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector:#selector(self.updateWeather) , userInfo: nil, repeats: true)
     }
     
     @objc func updateNightShift() {
@@ -140,97 +134,58 @@ class StatusMenuController: NSObject, NSMenuDelegate, WeatherAPIDelegate {
     
     @objc func updateAppearanceString() {
         let currentAppearance = getCurrentAppearance()
-        if currentAppearance.contains("true") {
+        if currentAppearance == true {
             appearanceStatus.stringValue = "Dark"
         } else {
             appearanceStatus.stringValue = "Light"
         }
     }
     
-    func getCurrentAppearance() -> String {
-        return shell("osascript -e 'tell application \"System Events\" to return dark mode of appearance preferences'")
+    func getCurrentAppearance() -> Bool {
+        return UserDefaults.standard.string(forKey: "AppleInterfaceStyle") == "Dark"
     }
     
     @objc func checkMusicPlaying() {
         let systemVersion = ProcessInfo.processInfo.operatingSystemVersion.minorVersion
+        var musicIsRunning = 0
         if systemVersion == 12 || systemVersion == 13 || systemVersion == 14 {
-            // macOS 10.12 --> 10.14 are shipped with iTunes as a music player
-            let url = NSWorkspace.shared.urlForApplication(withBundleIdentifier: "com.spotify.client")
-            if url != nil {
-                let SpotifyStatus = shell("osascript -e 'if application \"Spotify\" is running then tell application \"Spotify\" to return the player state as text'")
-                if SpotifyStatus.contains("playing") {
-                    return
+            musicIsRunning = NSRunningApplication.runningApplications(withBundleIdentifier: "com.apple.iTunes").count
+        } else {
+            musicIsRunning = NSRunningApplication.runningApplications(withBundleIdentifier: "com.apple.Music").count
+        }
+        if musicIsRunning > 0 {
+            let playerstate = iTunesAppleScript.playerState
+            if playerstate.rawValue == "kPSP" {
+                pauseButton.image = NSImage(named: "NSTouchBarPauseTemplate")
+            } else {
+                pauseButton.image = NSImage(named: "NSTouchBarPlayTemplate")
+            }
+            songDescription.isHidden = false
+            let playingSongName = iTunesAppleScript.currentTrack.title
+            let playingsongArtist = iTunesAppleScript.currentTrack.artist
+            if playingSongName == nil && playingsongArtist == nil {
+                songName.stringValue = "Not Playing"
+                songDescription.isHidden = true
+            } else {
+                if playingSongName!.count < 10 {
+                    songName.stringValue = "\(String(describing: playingSongName!))"
                 } else {
-                    let playing = shell("osascript -e 'if application \"iTunes\" is running then return \"isplaying\"'")
-                    if playing.contains("isplaying") {
-                        musicApp.image = NSImage(named: "music")
-                        let MusicStatus = shell("osascript -e 'tell application \"iTunes\" to return the player state as text'")
-                        if MusicStatus.contains("playing") {
-                            pauseButton.image = NSImage(named: "NSTouchBarPauseTemplate")
-                        } else {
-                            pauseButton.image = NSImage(named: "NSTouchBarPlayTemplate")
-                        }
-                        let playingSongName = shell("osascript -e 'tell application \"iTunes\" to if exists current track then return the name of the current track'")
-                        let playingsongArtist = shell("osascript -e 'tell application \"iTunes\" to if exists current track then return the artist of the current track'")
-                        songDescription.isHidden = false
-                        if playingSongName.count < 10 {
-                            songName.stringValue = "\(playingSongName)"
-                        } else if playingSongName == "" {
-                            songName.stringValue = "Not Playing"
-                        } else {
-                            songName.stringValue = "\(playingSongName.prefix(10))..."
-                        }
-                        if playingsongArtist.count < 15 {
-                            songDescription.stringValue = "\(playingsongArtist)"
-                        } else {
-                            songDescription.stringValue = "\(playingsongArtist.prefix(15))..."
-                        }
-                        songName.toolTip = "\(playingSongName)"
-                        songDescription.toolTip = "\(playingsongArtist)"
-                    } else {
-                        return
-                    }
+                    songName.stringValue = "\(String(describing: playingSongName!.prefix(10)))..."
                 }
+                if playingsongArtist!.count < 15 {
+                    songDescription.stringValue = "\(String(describing: playingsongArtist!))"
+                } else {
+                    songDescription.stringValue = "\(String(describing: playingsongArtist!.prefix(15)))..."
+                }
+            }
+            if iTunesAppleScript.currentTrack.artworkUrl == nil {
+                musicApp.image = NSImage(named: "music")
+            } else {
+                let playingsongArtwork = NSImage(contentsOf: URL(string: iTunesAppleScript.currentTrack.artworkUrl!)!)
+                musicApp.image = playingsongArtwork
             }
         } else {
-            // But in 10.15 Catalina, iTunes has been replaced with Music.
-            let url = NSWorkspace.shared.urlForApplication(withBundleIdentifier: "com.spotify.client")
-            if url != nil {
-                let SpotifyStatus = shell("osascript -e 'if application \"Spotify\" is running then tell application \"Spotify\" to return the player state as text'")
-                if SpotifyStatus.contains("playing") {
-                    return
-                } else {
-                    let playing = shell("osascript -e 'if application \"Music\" is running then return \"isplaying\"'")
-                    if playing.contains("isplaying") {
-                        musicApp.image = NSImage(named: "music")
-                        let MusicStatus = shell("osascript -e 'tell application \"Music\" to return the player state as text'")
-                        if MusicStatus.contains("playing") {
-                            pauseButton.image = NSImage(named: "NSTouchBarPauseTemplate")
-                        } else {
-                            pauseButton.image = NSImage(named: "NSTouchBarPlayTemplate")
-                        }
-                        let playingSongName = shell("osascript -e 'tell application \"Music\" to if exists current track then return the name of the current track'")
-                        let playingsongArtist = shell("osascript -e 'tell application \"Music\" to if exists current track then return the artist of the current track'")
-                        songDescription.isHidden = false
-                        if playingSongName.count < 10 {
-                            songName.stringValue = "\(playingSongName)"
-                        } else if playingSongName == "" {
-                            songName.stringValue = "Not Playing"
-                        } else {
-                            songName.stringValue = "\(playingSongName.prefix(10))..."
-                        }
-                        if playingsongArtist.count < 15 {
-                            songDescription.stringValue = "\(playingsongArtist)"
-                        } else {
-                            songDescription.stringValue = "\(playingsongArtist.prefix(15))..."
-                        }
-                        songName.toolTip = "\(playingSongName)"
-                        songDescription.toolTip = "\(playingsongArtist)"
-                    } else {
-                        return
-                    }
-                }
-            }
+            return
         }
     }
     
@@ -239,44 +194,38 @@ class StatusMenuController: NSObject, NSMenuDelegate, WeatherAPIDelegate {
         if url == nil {
             return
         } else {
-            let systemVersion = ProcessInfo.processInfo.operatingSystemVersion.minorVersion
-            if systemVersion == 12 || systemVersion == 13 || systemVersion == 14 {
-                let iTunesStatus = shell("osascript -e 'if application \"Music\" is running then tell application \"Spotify\" to return the player state as text'")
-                if iTunesStatus.contains("playing") {
-                    return
-                }
-            } else {
-                let MusicStatus = shell("osascript -e 'if application \"Music\" is running then tell application \"Spotify\" to return the player state as text'")
-                if MusicStatus.contains("playing") {
-                    return
-                }
-            }
-            let playing = shell("osascript -e 'if application \"Spotify\" is running then return \"isplaying\"'")
-            if playing.contains("isplaying") {
-                musicApp.image = NSImage(named: "spotify")
-                let MusicStatus = shell("osascript -e 'tell application \"Spotify\" to return the player state as text'")
-                if MusicStatus.contains("playing") {
+            let spotifyIsRunning = NSRunningApplication.runningApplications(withBundleIdentifier: "com.spotify.client").count
+            if spotifyIsRunning > 0 {
+                let playerstate = SpotifyAppleScript.playerState
+                if playerstate.rawValue == "kPSP" {
                     pauseButton.image = NSImage(named: "NSTouchBarPauseTemplate")
                 } else {
                     pauseButton.image = NSImage(named: "NSTouchBarPlayTemplate")
                 }
-                let playingSongName = shell("osascript -e 'tell application \"Spotify\" to return the name of the current track'")
-                let playingsongArtist = shell("osascript -e 'tell application \"Spotify\" to return the artist of the current track'")
                 songDescription.isHidden = false
-                if playingSongName.count < 10 {
-                    songName.stringValue = "\(playingSongName)"
-                } else if playingSongName == " " {
+                let playingSongName = SpotifyAppleScript.currentTrack.title
+                let playingsongArtist = SpotifyAppleScript.currentTrack.artist
+                if playingSongName == nil && playingsongArtist == nil {
                     songName.stringValue = "Not Playing"
+                    songDescription.isHidden = true
                 } else {
-                    songName.stringValue = "\(playingSongName.prefix(10))..."
+                    if playingSongName!.count < 10 {
+                        songName.stringValue = "\(String(describing: playingSongName!))"
+                    } else {
+                        songName.stringValue = "\(String(describing: playingSongName!.prefix(10)))..."
+                    }
+                    if playingsongArtist!.count < 15 {
+                        songDescription.stringValue = "\(String(describing: playingsongArtist!))"
+                    } else {
+                        songDescription.stringValue = "\(String(describing: playingsongArtist!.prefix(15)))..."
+                    }
                 }
-                if playingsongArtist.count < 15 {
-                    songDescription.stringValue = "\(playingsongArtist)"
+                if SpotifyAppleScript.currentTrack.artworkUrl == nil {
+                    musicApp.image = NSImage(named: "music")
                 } else {
-                    songDescription.stringValue = "\(playingsongArtist.prefix(15))..."
+                    let playingsongArtwork = NSImage(contentsOf: URL(string: SpotifyAppleScript.currentTrack.artworkUrl!)!)
+                    musicApp.image = playingsongArtwork
                 }
-                songName.toolTip = "\(playingSongName)"
-                songDescription.toolTip = "\(playingsongArtist)"
             } else {
                 return
             }
@@ -337,7 +286,6 @@ class StatusMenuController: NSObject, NSMenuDelegate, WeatherAPIDelegate {
             } else {
                 wifiStatus.stringValue = ssid
                 wifiBulb.image = NSImage(named: "bulb_on")
-                updateWeather()
             }
         }
     }
@@ -346,7 +294,7 @@ class StatusMenuController: NSObject, NSMenuDelegate, WeatherAPIDelegate {
         NSLog(weather.description)
     }
     
-    func updateWeather() {
+    @objc func updateWeather() {
         let defaults = UserDefaults.standard
         let city = defaults.string(forKey: "city") ?? DEFAULT_CITY
         weatherAPI.fetchWeather(city) { weather in

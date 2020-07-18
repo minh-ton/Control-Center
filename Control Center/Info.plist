@@ -43,5 +43,7 @@
 	<string>NSApplication</string>
 	<key>NSSupportsAutomaticTermination</key>
 	<false/>
+	<key>SUFeedURL</key>
+	<string>https://minh-ton.github.io/controlcenter/ccappcast.xml</string>
 </dict>
 </plist>

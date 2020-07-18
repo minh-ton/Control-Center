@@ -1,0 +1,19 @@
+{
+  "name": "iTunesAppleScript",
+  "version": "0.0.1",
+  "summary": "An iTunes wrapper class for controlling iTunes on macOS",
+  "homepage": "https://github.com/kmikiy/iTunesAppleScript",
+  "license": "MIT",
+  "authors": {
+    "Kristyán Miklós": "m.kristyan@gmail.com"
+  },
+  "social_media_url": "http://twitter.com/kmikiyy",
+  "platforms": {
+    "osx": "10.10"
+  },
+  "source": {
+    "git": "https://github.com/kmikiy/iTunesAppleScript.git",
+    "tag": "0.0.1"
+  },
+  "source_files": "iTunesAppleScript/*.swift"
+}

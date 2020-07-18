@@ -1,0 +1,32 @@
+PODS:
+  - iTunesAppleScript (0.0.1)
+  - Sparkle (1.23.0)
+  - SpotifyAppleScript (0.3.0)
+
+DEPENDENCIES:
+  - iTunesAppleScript (from `https://github.com/Minh-Ton/iTunesAppleScriptUpdated.git`)
+  - Sparkle
+  - SpotifyAppleScript (~> 0.3)
+
+SPEC REPOS:
+  trunk:
+    - Sparkle
+    - SpotifyAppleScript
+
+EXTERNAL SOURCES:
+  iTunesAppleScript:
+    :git: https://github.com/Minh-Ton/iTunesAppleScriptUpdated.git
+
+CHECKOUT OPTIONS:
+  iTunesAppleScript:
+    :commit: 822c62dcbfd81539d2ac546fe5bdc4c014a94991
+    :git: https://github.com/Minh-Ton/iTunesAppleScriptUpdated.git
+
+SPEC CHECKSUMS:
+  iTunesAppleScript: 7289b5b19e2674a43053297894ce9b967c55f649
+  Sparkle: 55b1a87ba69d56913375a281546b7c82dec95bb0
+  SpotifyAppleScript: 1082f8920e720fe5a20e71c088bccb568e71a12a
+
+PODFILE CHECKSUM: 30f8b8bbcefd8e6666897192dfcd1aecdee0bd06
+
+COCOAPODS: 1.9.3

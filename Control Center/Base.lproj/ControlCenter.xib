@@ -139,7 +139,7 @@
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KIm-af-Nbd">
                     <rect key="frame" x="280" y="352" width="36" height="38"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="bulb_on" id="cvw-6K-aFV"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="bulb_off" id="cvw-6K-aFV"/>
                 </imageView>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rwo-kH-KmF">
                     <rect key="frame" x="20" y="328" width="36" height="38"/>
@@ -222,10 +222,10 @@
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TRE-Kt-pGh">
                     <rect key="frame" x="62" y="441" width="39" height="17"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Wi-Fi" id="vMX-fc-0qx">
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Wi-Fi" drawsBackground="YES" id="vMX-fc-0qx">
                         <font key="font" metaFont="system" size="14"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s5N-Vv-e4F">
@@ -247,7 +247,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Cv-sb-8GT">
-                    <rect key="frame" x="161" y="35" width="119" height="28"/>
+                    <rect key="frame" x="162" y="35" width="119" height="28"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Not Playing" id="bya-2P-Ho3">
                         <font key="font" metaFont="systemSemibold" size="16"/>
@@ -276,10 +276,10 @@
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eE2-zj-yV4">
                     <rect key="frame" x="75" y="129" width="260" height="28"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Weather in Control Center" id="lAp-Bd-obi">
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Weather in Control Center" drawsBackground="YES" id="lAp-Bd-obi">
                         <font key="font" metaFont="systemSemibold" size="16"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q2T-te-mlg">
@@ -328,7 +328,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6M8-rm-w8C">
-                    <rect key="frame" x="179" y="319" width="64" height="32"/>
+                    <rect key="frame" x="179" y="321" width="64" height="32"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" selectable="YES" enabled="NO" alignment="center" title="Sleep Display" id="hF1-sX-awT">
                         <font key="font" metaFont="cellTitle"/>
@@ -337,7 +337,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="53G-HL-AZr">
-                    <rect key="frame" x="257" y="319" width="82" height="32"/>
+                    <rect key="frame" x="257" y="321" width="82" height="32"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" selectable="YES" enabled="NO" alignment="center" title="Night Shift" id="BUL-dl-Dwk">
                         <font key="font" metaFont="cellTitle"/>
@@ -355,7 +355,7 @@
                     </textFieldCell>
                 </textField>
                 <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2RJ-5s-X4a">
-                    <rect key="frame" x="162" y="27" width="118" height="16"/>
+                    <rect key="frame" x="163" y="27" width="118" height="16"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Artist: N/a" id="yL9-Gt-1iJ">
                         <font key="font" metaFont="system"/>
@@ -364,7 +364,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5yi-T5-XpM">
-                    <rect key="frame" x="15" y="8" width="64" height="32"/>
+                    <rect key="frame" x="15" y="10" width="64" height="32"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" selectable="YES" enabled="NO" alignment="center" title="App Settings" id="klr-f9-IEc">
                         <font key="font" metaFont="cellTitle"/>
@@ -480,7 +480,7 @@
                     </connections>
                 </button>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wfb-AK-wyW">
-                    <rect key="frame" x="270" y="26" width="34" height="36"/>
+                    <rect key="frame" x="272" y="26" width="34" height="36"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSTouchBarPlayTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="442-9Q-eZ2">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -491,7 +491,7 @@
                     </connections>
                 </button>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Bv-5F-Zte">
-                    <rect key="frame" x="300" y="26" width="34" height="36"/>
+                    <rect key="frame" x="303" y="32" width="26" height="24"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSTouchBarFastForwardTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="umd-vE-egd">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -548,6 +548,7 @@
         <image name="NSTouchBarFastForwardTemplate" width="22" height="30"/>
         <image name="NSTouchBarPlayTemplate" width="14" height="30"/>
         <image name="bulb_blank" width="640" height="426"/>
+        <image name="bulb_off" width="475" height="474"/>
         <image name="bulb_on" width="475" height="474"/>
         <image name="cc_appearance" width="188" height="168"/>
         <image name="cc_bluetooth" width="345" height="533"/>
