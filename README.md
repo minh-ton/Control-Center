@@ -1,6 +1,4 @@
-# [Control-Center Beta](https://github.com/Minh-Ton/Control-Center)
-
-Bring the macOS Big Sur Control Center to macOS 10.12 - 10.15
+Control Center app - Bring the macOS Big Sur Control Center to macOS 10.12 - 10.15
 
 ### Requirements
 - macOS 10.12.2 Sierra or later.
