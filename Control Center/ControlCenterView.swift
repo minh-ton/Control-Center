@@ -352,7 +352,6 @@ class ControlCenterView: NSView {
     }
     
     func getDisplayBrightness() -> Float {
-        
         var brightness: Float = 1.0
         var service: io_object_t = 1
         var iterator: io_iterator_t = 0

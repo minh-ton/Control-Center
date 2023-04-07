@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -52,7 +52,7 @@
                 <box fixedFrame="YES" borderType="bezel" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="PrZ-Xi-Vae" userLabel="DoNotDisturbBox">
                     <rect key="frame" x="170" y="396" width="170" height="78"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <view key="contentView" ambiguous="YES" id="olc-uZ-rhF">
+                    <view key="contentView" id="olc-uZ-rhF">
                         <rect key="frame" x="3" y="3" width="164" height="72"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
@@ -60,7 +60,7 @@
                 <box fixedFrame="YES" borderType="bezel" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="bZc-jV-wA0" userLabel="SleepDisplayBox">
                     <rect key="frame" x="170" y="313" width="84" height="83"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <view key="contentView" ambiguous="YES" id="84d-3y-hNs">
+                    <view key="contentView" id="84d-3y-hNs">
                         <rect key="frame" x="3" y="3" width="78" height="77"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
@@ -68,7 +68,7 @@
                 <box fixedFrame="YES" borderType="bezel" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="zzI-UX-Jjr" userLabel="SettingsBox">
                     <rect key="frame" x="5" y="2" width="84" height="82"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <view key="contentView" ambiguous="YES" id="a6S-eF-xk7">
+                    <view key="contentView" id="a6S-eF-xk7">
                         <rect key="frame" x="3" y="3" width="78" height="76"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
@@ -76,7 +76,7 @@
                 <box fixedFrame="YES" borderType="bezel" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="9Ct-xi-Gcx" userLabel="NightShiftBox">
                     <rect key="frame" x="256" y="313" width="84" height="83"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <view key="contentView" ambiguous="YES" id="QTx-Qu-eer">
+                    <view key="contentView" id="QTx-Qu-eer">
                         <rect key="frame" x="3" y="3" width="78" height="77"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
@@ -84,7 +84,7 @@
                 <box fixedFrame="YES" borderType="bezel" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="hzG-SM-UtE" userLabel="DisplayBox">
                     <rect key="frame" x="5" y="241" width="335" height="70"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <view key="contentView" ambiguous="YES" id="yWS-wQ-ppp">
+                    <view key="contentView" id="yWS-wQ-ppp">
                         <rect key="frame" x="3" y="3" width="329" height="64"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
@@ -92,7 +92,7 @@
                 <box fixedFrame="YES" borderType="bezel" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="0yJ-kB-Nqn" userLabel="MusicBox">
                     <rect key="frame" x="91" y="2" width="249" height="82"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <view key="contentView" ambiguous="YES" id="yT4-zr-9EC">
+                    <view key="contentView" id="yT4-zr-9EC">
                         <rect key="frame" x="3" y="3" width="243" height="76"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
@@ -100,7 +100,7 @@
                 <box fixedFrame="YES" borderType="bezel" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="uyj-Nl-kVF" userLabel="SoundBox">
                     <rect key="frame" x="5" y="169" width="335" height="70"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <view key="contentView" ambiguous="YES" id="fOr-l5-5ZF">
+                    <view key="contentView" id="fOr-l5-5ZF">
                         <rect key="frame" x="3" y="3" width="329" height="64"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
@@ -108,16 +108,32 @@
                 <box fixedFrame="YES" borderType="bezel" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="SQV-XW-3aC" userLabel="WeatherBox">
                     <rect key="frame" x="5" y="86" width="336" height="81"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <view key="contentView" ambiguous="YES" id="upe-HH-PuA">
+                    <view key="contentView" id="upe-HH-PuA">
                         <rect key="frame" x="3" y="3" width="330" height="75"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
                 </box>
                 <box fixedFrame="YES" borderType="bezel" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="HlV-1N-l2E" userLabel="ConnectionsBox">
-                    <rect key="frame" x="5" y="313" width="163" height="161"/>
+                    <rect key="frame" x="5" y="313" width="163" height="54"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <view key="contentView" ambiguous="YES" id="8cj-kF-hr9">
-                        <rect key="frame" x="3" y="3" width="157" height="155"/>
+                    <view key="contentView" id="8cj-kF-hr9">
+                        <rect key="frame" x="3" y="3" width="157" height="48"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                </box>
+                <box fixedFrame="YES" borderType="bezel" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="mIy-qR-dZY" userLabel="ConnectionsBox">
+                    <rect key="frame" x="5" y="367" width="163" height="54"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <view key="contentView" id="tdp-5U-tPx">
+                        <rect key="frame" x="3" y="3" width="157" height="48"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                </box>
+                <box fixedFrame="YES" borderType="bezel" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="N3T-g9-Kpl" userLabel="ConnectionsBox">
+                    <rect key="frame" x="5" y="420" width="163" height="54"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <view key="contentView" id="wnO-yq-ED4">
+                        <rect key="frame" x="3" y="3" width="157" height="48"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
                 </box>
@@ -259,7 +275,7 @@
                     <rect key="frame" x="18" y="284" width="57" height="19"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Display" id="t43-hW-nS5">
-                        <font key="font" size="15" name=".AppleSystemUIFontDemi"/>
+                        <font key="font" metaFont="systemSemibold" size="15"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -268,7 +284,7 @@
                     <rect key="frame" x="18" y="211" width="50" height="19"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Sound" id="N8a-KK-qxE">
-                        <font key="font" size="15" name=".AppleSystemUIFontDemi"/>
+                        <font key="font" metaFont="systemSemibold" size="15"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -428,9 +444,9 @@
                     </connections>
                 </button>
                 <button toolTip="Switch between Light and Dark Mode" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LHb-CW-1CL">
-                    <rect key="frame" x="14" y="323" width="48" height="48"/>
+                    <rect key="frame" x="14" y="318" width="48" height="48"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="bulb_blank" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="e6t-EY-2y7">
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="bulb_blank" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="e6t-EY-2y7">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -510,6 +526,17 @@
                     </buttonCell>
                     <connections>
                         <action selector="preferencesClicked:" target="aHq-GP-m7e" id="OTf-ZA-zRu"/>
+                    </connections>
+                </button>
+                <button toolTip="Turn Wi-Fi On/Off" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wPJ-fw-XpR">
+                    <rect key="frame" x="61" y="424" width="104" height="48"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="bulb_blank" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="gXt-Wf-eix">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="wifiDetailsClicked:" target="aHq-GP-m7e" id="Vb6-Lo-QAt"/>
                     </connections>
                 </button>
             </subviews>

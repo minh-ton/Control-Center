@@ -20,6 +20,7 @@
 		01FE0F5224B9BE1800FD673A /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01FE0F5024B9BE1800FD673A /* PreferencesWindow.xib */; };
 		01FE0F5724B9C94200FD673A /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FE0F5624B9C94200FD673A /* APIKey.swift */; };
 		01FE0F5924BC312200FD673A /* nightlight in Resources */ = {isa = PBXBuildFile; fileRef = 01FE0F5824BC312200FD673A /* nightlight */; };
+		483CA15629DF39B6008392F2 /* WiFiDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483CA15529DF39B6008392F2 /* WiFiDetailsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		01FE0F5824BC312200FD673A /* nightlight */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = nightlight; sourceTree = "<group>"; };
 		101B2B451AB8F61B5481FD5E /* Pods_Control_Center.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Control_Center.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		10FF59AA878FAE0476FD6102 /* Pods-Control Center.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Control Center.release.xcconfig"; path = "Target Support Files/Pods-Control Center/Pods-Control Center.release.xcconfig"; sourceTree = "<group>"; };
+		483CA15529DF39B6008392F2 /* WiFiDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiDetailsView.swift; sourceTree = "<group>"; };
 		EE321580286F2268FBD02F40 /* Pods-Control Center.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Control Center.debug.xcconfig"; path = "Target Support Files/Pods-Control Center/Pods-Control Center.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,6 +84,7 @@
 				014FC54D24B69AB000344772 /* StatusMenuController.swift */,
 				014FC55724B6F70D00344772 /* ControlCenterView.swift */,
 				01FE0F4F24B9BE1800FD673A /* PreferencesWindow.swift */,
+				483CA15529DF39B6008392F2 /* WiFiDetailsView.swift */,
 				014FC55924B701EA00344772 /* WeatherAPI.swift */,
 				014FC54124B6158600344772 /* Assets.xcassets */,
 				014FC54324B6158600344772 /* ControlCenter.xib */,
@@ -238,6 +241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				014FC54E24B69AB000344772 /* StatusMenuController.swift in Sources */,
+				483CA15629DF39B6008392F2 /* WiFiDetailsView.swift in Sources */,
 				01FE0F5724B9C94200FD673A /* APIKey.swift in Sources */,
 				01FE0F5124B9BE1800FD673A /* PreferencesWindow.swift in Sources */,
 				014FC55A24B701EA00344772 /* WeatherAPI.swift in Sources */,
@@ -310,7 +314,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.12.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -364,7 +368,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.12.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
