@@ -48,7 +48,7 @@ class StatusMenuController: NSObject, NSMenuDelegate, WeatherAPIDelegate {
     
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var CCMenu: NSMenu!
-    @IBOutlet weak var ControlCenterView: ControlCenterView!
+    @IBOutlet weak var controlCenterView: ControlCenterView!
     @IBOutlet weak var brightnessSlider: NSSlider!
     @IBOutlet weak var volumeSlider: NSSlider!
     @IBOutlet weak var wifiStatus: NSTextField!
@@ -70,18 +70,22 @@ class StatusMenuController: NSObject, NSMenuDelegate, WeatherAPIDelegate {
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     var weatherAPI: WeatherAPI!
     var preferencesWindow: PreferencesWindow!
+    var wifiDetailsView: WiFiDetailsView!
     
     override func awakeFromNib() {
-        ControlCenterView.window?.isOpaque = true
-        ControlCenterView.window?.backgroundColor = NSColor.clear
+        controlCenterView.window?.isOpaque = true
+        controlCenterView.window?.backgroundColor = NSColor.clear
         
         let menuicon = NSImage(named: "controlcenter")
         menuicon?.isTemplate = true
         statusItem.image = menuicon
         statusItem.menu = CCMenu
         controlCenterMenuItem = CCMenu.item(withTitle: "ControlCenter")
-        controlCenterMenuItem.view = ControlCenterView
+        controlCenterMenuItem.view = controlCenterView
         preferencesWindow = PreferencesWindow()
+        wifiDetailsView = WiFiDetailsView(frame: controlCenterView.frame)
+        wifiDetailsView.backButton.target = self
+        wifiDetailsView.backButton.action = #selector(returnFromWiFiClicked(_:))
         
         // Insert code here to initialize your application
         weatherAPI = WeatherAPI(delegate: self)
@@ -93,6 +97,18 @@ class StatusMenuController: NSObject, NSMenuDelegate, WeatherAPIDelegate {
         preferencesWindow.showWindow(self)
     }
     
+    @IBAction func wifiDetailsClicked(_ sender: NSButton) {
+        controlCenterMenuItem.view = wifiDetailsView
+        controlCenterView.isHidden = true
+        wifiDetailsView.isHidden = false
+    }
+
+    @objc func returnFromWiFiClicked(_ sender: NSButton) {
+        controlCenterMenuItem.view = controlCenterView
+        controlCenterView.isHidden = false
+        wifiDetailsView.isHidden = true
+    }
+
     func updateAll() {
         updateBrightnessSlider()
         updateVolumeSlider()
@@ -298,7 +314,7 @@ class StatusMenuController: NSObject, NSMenuDelegate, WeatherAPIDelegate {
         let defaults = UserDefaults.standard
         let city = defaults.string(forKey: "city") ?? DEFAULT_CITY
         weatherAPI.fetchWeather(city) { weather in
-            self.ControlCenterView.update(weather)
+            self.controlCenterView.update(weather)
         }
     }
     
